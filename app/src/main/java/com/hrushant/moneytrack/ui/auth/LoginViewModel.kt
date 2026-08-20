@@ -2,6 +2,7 @@ package com.hrushant.moneytrack.ui.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.hrushant.moneytrack.data.local.session.SessionManager
 import com.hrushant.moneytrack.data.repository.UserRepository
 import com.hrushant.moneytrack.utils.PasswordHasher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -10,7 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class LoginViewModel(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val sessionManager: SessionManager
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<LoginUiState>(LoginUiState.Idle)
@@ -38,6 +40,7 @@ class LoginViewModel(
                 )
 
                 if(passwordCorrect){
+                    sessionManager.saveSession(user.id)
                     _uiState.value = LoginUiState.Success
                 } else {
                     _uiState.value = LoginUiState.InvalidCredentials
@@ -49,4 +52,5 @@ class LoginViewModel(
             }
         }
     }
+
 }

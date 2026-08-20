@@ -13,6 +13,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.hrushant.moneytrack.R
 import com.hrushant.moneytrack.data.local.database.DatabaseProvider
+import com.hrushant.moneytrack.data.local.session.SessionManager
 import com.hrushant.moneytrack.data.repository.UserRepository
 import com.hrushant.moneytrack.databinding.FragmentLoginBinding
 import kotlinx.coroutines.launch
@@ -25,7 +26,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginViewModel by viewModels {
         val database = DatabaseProvider.getDatabase(requireContext())
         val repository = UserRepository(database.userDao())
-        LoginViewModelFactory(repository)
+        val sessionManager = SessionManager(requireContext())
+        LoginViewModelFactory(repository, sessionManager)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,6 +54,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
         observeUiState()
     }
+
+
 
     private fun observeUiState() {
 
