@@ -58,4 +58,7 @@ dependencies {
 
     //bcrypt for password hashing
     implementation("org.mindrot:jbcrypt:0.4")
+
+    //datastore
+    implementation("androidx.datastore:datastore-preferences:1.2.0")
 }
