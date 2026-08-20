@@ -82,7 +82,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             binding.btnLogin.isEnabled = true
                             binding.btnLogin.text = "LOGIN"
 
-                            // Dashboard navigation will be added later
+                            // Dashboard navigation
+                            findNavController().navigate(
+                                R.id.action_loginFragment_to_dashboardFragment
+                            )
                         }
 
                         LoginUiState.UserNotFound -> {
