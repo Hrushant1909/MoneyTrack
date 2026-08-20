@@ -50,8 +50,12 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.9.8")
     implementation("androidx.navigation:navigation-ui-ktx:2.9.8")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-    val room_version = "2.8.4"
 
+    //room and ksp configuration
+    val room_version = "2.8.4"
     implementation("androidx.room:room-runtime:$room_version")
     ksp("androidx.room:room-compiler:$room_version")
+
+    //bcrypt for password hashing
+    implementation("org.mindrot:jbcrypt:0.4")
 }

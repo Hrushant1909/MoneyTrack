@@ -5,8 +5,12 @@ import com.hrushant.moneytrack.data.local.dao.UserDao
 
 class UserRepository(private val userDao: UserDao) {
 
-    suspend fun registerUser(user: User){
+    suspend fun registerUser(user: User): Boolean{
+        val existingUser = userDao.getUserByEmail(user.email)
+        if(existingUser != null)
+            return false
         userDao.insertUser(user)
+        return true
     }
 
     suspend fun getUserByEmail(email: String): User?{
