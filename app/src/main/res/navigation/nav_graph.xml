@@ -39,7 +39,12 @@
         android:id="@+id/dashboardFragment"
         android:name="com.hrushant.moneytrack.ui.dashboard.DashboardFragment"
         android:label="DashboardFragment"
-        tools:layout="@layout/fragment_dashboard"/>
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment" />
+
+    </fragment>
 
 
 
@@ -61,4 +66,9 @@
             app:popUpTo="@id/startFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="com.hrushant.moneytrack.ui.transaction.AddTransactionFragment"
+        android:label="Add Transaction"
+        tools:layout="@layout/fragment_add_transaction" />
 </navigation>
