@@ -2,16 +2,24 @@ package com.hrushant.moneytrack.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.hrushant.moneytrack.data.local.session.SessionManager
 import com.hrushant.moneytrack.data.repository.CategoryRepository
+import com.hrushant.moneytrack.data.repository.TransactionRepository
 
 class DashboardViewModelFactory(
-    private val categoryRepository: CategoryRepository
+    private val categoryRepository: CategoryRepository,
+    private val transactionRepository: TransactionRepository,
+    private val sessionManager: SessionManager
 ) : ViewModelProvider.Factory{
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(DashboardViewModel::class.java)){
             @Suppress("UNCHECKED_CAST")
-            return DashboardViewModel(categoryRepository) as T
+            return DashboardViewModel(
+                categoryRepository,
+                transactionRepository,
+                sessionManager
+            ) as T
 
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
